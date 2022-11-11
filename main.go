@@ -29,3 +29,10 @@ func renameDirFile()  {
 		log.Fatalln(err)
 	}
 }
+
+// fileServer("8888", "./")
+func fileServer(port string, path string)  {
+	router := gin.Default()
+	router.StaticFS("/", http.Dir(path))
+	router.Run(":"+port)
+}
