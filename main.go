@@ -8,12 +8,8 @@ import (
 	"path/filepath"
 )
 
-func main()  {
-
-}
-
 // 重命名目录的所有文件
-func renameDirFile()  {
+func RenameDirFile()  {
 	p := "C:\\Users\\Ares\\Desktop\\C\\project\\figlinks"
 	err := filepath.Walk(p, func(path string, info fs.FileInfo, err error) error {
 		if path != p {
@@ -35,4 +31,11 @@ func fileServer(port string, path string)  {
 	router := gin.Default()
 	router.StaticFS("/", http.Dir(path))
 	router.Run(":"+port)
+}
+
+func GetRandomString2(n int) string {
+	rand.Seed(time.Now().UnixNano())
+	randBytes := make([]byte, n/2)
+	rand.Read(randBytes)
+	return fmt.Sprintf("%x", randBytes)
 }
