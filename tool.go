@@ -1,16 +1,18 @@
-package main
+package tool
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"io/fs"
 	"log"
+	"math/rand"
+	"net/http"
 	"os"
 	"path/filepath"
+	"time"
 )
 
-// 重命名目录的所有文件
-func RenameDirFile()  {
-	p := "C:\\Users\\Ares\\Desktop\\C\\project\\figlinks"
+func RenameDirFile(p string)  {
 	err := filepath.Walk(p, func(path string, info fs.FileInfo, err error) error {
 		if path != p {
 			newName := path + ".c"
@@ -26,8 +28,7 @@ func RenameDirFile()  {
 	}
 }
 
-// fileServer("8888", "./")
-func fileServer(port string, path string)  {
+func FileServer(port string, path string)  {
 	router := gin.Default()
 	router.StaticFS("/", http.Dir(path))
 	router.Run(":"+port)
