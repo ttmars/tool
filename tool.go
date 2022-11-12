@@ -40,3 +40,13 @@ func GetRandomString2(n int) string {
 	rand.Read(randBytes)
 	return fmt.Sprintf("%x", randBytes)
 }
+
+// GetRandomNM 从[N,M]中获取随机数
+func GetRandomNM(N,M int) int  {
+	if M<N {
+		return 0
+	}
+	rand.Seed(time.Now().UnixNano())
+	n := rand.Intn(M-N+1)
+	return n+N
+}
